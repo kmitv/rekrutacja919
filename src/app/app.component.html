@@ -1,0 +1,268 @@
+<!-- KLIK GDZIEKOLWIEK - ACTIVE ŻADEN, KLIK NA JEDEN Z ADDTIONAL CONTROLS - ACTIVE TEN WŁAŚNIE -->
+
+
+
+<div id="mainContainer">
+  <div id="titleBar">
+    <div id="windowadditionalControls">
+      <div class="dropdown">
+        <button (click)="accountDropdownToggle()" [className]="accountDropdownActive==true ? 'dropbtn selectRibbonMode ribbonActive' : 'dropbtn selectRibbonMode'"><fa-icon class="dropbtn" [icon]="faUserAlt" style="padding-left: 8px; padding-right: 8px;"></fa-icon>Koniec&nbsp;pracy<fa-icon class="dropbtn" [icon]="faChevronUp" style="padding-left: 8px; padding-right: 8px;opacity: 0.8;" [ngStyle]="accountDropdownActive==true ? {'transform': 'rotate(0deg)'} : {'transform': 'rotate(180deg)'}"></fa-icon></button>
+        <div class="dropdown-content" id="accountDropdown" [className]="accountDropdownActive==true ? 'dropdown-content show' : 'dropdown-content hide'">
+          <a href="#" class="dropdownItem">Link 1</a>
+          <a href="#" class="dropdownItem">Link 2</a>
+          <a href="#" class="dropdownItem">Link 3</a>
+        </div>
+      </div> 
+      <div class="dropdown">
+        <button (click)="inputDropdownToggle()" [className]="inputDropdownActive==true ? 'dropbtn selectRibbonMode ribbonActive' : 'dropbtn selectRibbonMode'"><fa-icon class="dropbtn" [icon]="faHandPointUp" style="padding-left: 8px; padding-right: 8px;"></fa-icon><fa-icon class="dropbtn" [icon]="faChevronUp" style="padding-left: 8px; padding-right: 8px;opacity: 0.8;" [ngStyle]="inputDropdownActive==true ? {'transform': 'rotate(0deg)'} : {'transform': 'rotate(180deg)'}"></fa-icon></button>
+        <div class="dropdown-content" id="inputDropdown" [className]="inputDropdownActive==true ? 'dropdown-content show' : 'dropdown-content hide'">
+          <a href="#" class="dropdownItem">Link 1</a>
+          <a href="#" class="dropdownItem">Link 2</a>
+          <a href="#" class="dropdownItem">Link 3</a>
+        </div>
+      </div> 
+      <div class="dropdown">
+        <button class="dropbtn selectRibbonMode" [disabled]><fa-icon class="dropbtn" [icon]="faMicrophone" style="padding-left: 8px; padding-right: 8px;"></fa-icon></button>
+      </div>
+      <div class="dropdown">
+        <button (click)="musicDropdownToggle()" [className]="musicDropdownActive==true ? 'dropbtn selectRibbonMode ribbonActive' : 'dropbtn selectRibbonMode'"><fa-icon class="dropbtn" [icon]="faMusic" style="padding-left: 8px; padding-right: 8px;"></fa-icon><fa-icon class="dropbtn" [icon]="faChevronUp" style="padding-left: 8px; padding-right: 8px;opacity: 0.8;" [ngStyle]="musicDropdownActive==true ? {'transform': 'rotate(0deg)'} : {'transform': 'rotate(180deg)'}"></fa-icon></button>
+
+        <div class="dropdown-content" id="musicDropdown" [className]="musicDropdownActive==true ? 'dropdown-content show' : 'dropdown-content hide'">
+          
+          <a href="#" class="dropdownItem">Link 1</a>
+          <a href="#" class="dropdownItem">Link 2</a>
+          <a href="#" class="dropdownItem">Link 3</a>
+        </div>
+
+      </div> 
+    </div>
+    <div id="windowTitle">
+      Home - Contactis Contact Center
+    </div>
+    <div id="windowControl">
+      <div class="selectWindowControl">
+        <fa-icon [icon]="faWindowMinimize"></fa-icon>
+      </div>
+      <div class="selectWindowControl">
+        <fa-icon [icon]="faWindowMaximize"></fa-icon>
+      </div>
+      <div class="selectWindowControl">
+        <fa-icon [icon]="faTimes"></fa-icon>
+      </div>
+    </div>
+  </div>
+  <div id="selectBar">
+    <button (click)="selSet()" [className]="selComponent==0 ? 'selectRibbonModeSelected modeTabs' : 'selectRibbonMode modeTabs'"><fa-icon [icon]="faCog"></fa-icon></button>
+    <button (click)="selStart()" [className]="selComponent==1 ? 'selectRibbonModeSelected modeTabs' : 'selectRibbonMode modeTabs'">Start</button>
+    <button (click)="selTools()" [className]="selComponent==2 ? 'selectRibbonModeSelected modeTabs' : 'selectRibbonMode modeTabs'">Narzędzia</button>
+    <button (click)="selConf()" [className]="selComponent==3 ? 'selectRibbonModeSelected modeTabs' : 'selectRibbonMode modeTabs'">Konfiguracja</button>
+    <button (click)="selCall()" id="callAdditionalTab" [className]="selComponent==4 ? 'selectRibbonModeSelected modeTabs' : 'selectRibbonMode modeTabs'" *ngIf="ongoingCall==true"><div style="margin: 0;height: 100%;background-color: #8f3127;color: #f1f1f1;display: flex;align-items: center;padding-left: 8px;padding-right: 8px;">Rozmowy telefoniczne</div><div style="margin: 0;height: 50%;">Rozmowa</div></button>
+  </div>
+  <div id="toolBar">
+    <div *ngIf="this.selComponent == 0" class="toolBarContent">
+
+    </div>
+  <div *ngIf="this.selComponent == 1" class="toolBarContent">
+    <div class="toolBarSection">
+      <button (click)="startCall()" style="grid-column: 1;" [className]="ongoingCall==true ? 'toolBarContentButton ongoingCall' : 'toolBarContentButton'">
+        <fa-icon class="fa-2x" [icon]="faPhone"></fa-icon>
+        <p class="toolBarButtonText">Zadzwoń</p>
+      </button>
+      <div class="dropdown" style="grid-column: 2;grid-row: 1;" (click)="newmailDropdownToggle()">
+        <button style="height: 100%;" [className]="newmailDropdownActive==true ? 'dropbtn toolBarContentButton toolBarContentButtonActive' : 'dropbtn toolBarContentButton'">
+          <fa-icon class="fa-2x" [icon]="faEnvelope"></fa-icon>
+          <div class="toolBarButtonText">Nowa wiadomość e-mail <fa-icon class="dropbtn" [icon]="faChevronUp" style="padding-left: 8px; padding-right: 8px;opacity: 0.8;display: inline-block;" [ngStyle]="newmailDropdownActive==true ? {'transform': 'rotate(0deg)'} : {'transform': 'rotate(180deg)'}"></fa-icon></div>
+        </button>
+        
+        <div class="dropdown-content" id="newmailDropdown" [className]="newmailDropdownActive==true ? 'dropdown-content show' : 'dropdown-content hide'">
+          <a href="#" class="dropdownItem">Link 1</a>
+          <a href="#" class="dropdownItem">Link 2</a>
+          <a href="#" class="dropdownItem">Link 3</a>
+        </div>
+      </div> 
+      <div class="toolBarContentScrollable">
+        <div class="contentButtonScrollable">
+          <button class="toolBarContentButton scrollableContentButton">
+            <fa-icon class="fa-2x" [icon]="faGlobe"></fa-icon>
+            <p class="toolBarButtonText">CRM</p>
+          </button>
+          <button class="toolBarContentButton scrollableContentButton">
+            <fa-icon class="fa-2x" [icon]="faGlobe"></fa-icon>
+            <p class="toolBarButtonText">WWW</p>
+          </button>
+        </div>
+      </div>
+      <button class="toolBarContentButton">
+        <fa-icon class="fa-2x" [icon]="faMobileAlt"></fa-icon>
+        <p class="toolBarButtonText">Wyślij SMS</p>
+      </button>
+      <p class="toolBarSectionSubtitle">Kontakt</p>
+    </div>
+    <div class="toolBarSection">
+      <div class="dropdown" style="grid-column: 1;grid-row: 1;" (click)="finishworkDropdownToggle()">
+        <button style="height: 100%;" [className]="finishworkDropdownActive==true ? 'dropbtn toolBarContentButton toolBarContentButtonActive' : 'dropbtn toolBarContentButton'">
+          <fa-icon class="fa-2x" [icon]="faUserAlt"></fa-icon>
+          <div class="toolBarButtonText">Koniec pracy<fa-icon class="dropbtn" [icon]="faChevronUp" style="padding-left: 8px; padding-right: 8px;opacity: 0.8;display: inline-block;" [ngStyle]="finishworkDropdownActive==true ? {'transform': 'rotate(0deg)'} : {'transform': 'rotate(180deg)'}"></fa-icon></div>
+        </button>
+        <div class="dropdown-content" id="finishworkDropdown" [className]="finishworkDropdownActive==true ? 'dropdown-content show' : 'dropdown-content hide'">
+          <a href="#" class="dropdownItem">Link 1</a>
+          <a href="#" class="dropdownItem">Link 2</a>
+          <a href="#" class="dropdownItem">Link 3</a>
+        </div>
+      </div> 
+      <div class="dropdown" style="grid-column: 2;grid-row: 1;" (click)="joincampDropdownToggle()">
+        <button style="height: 100%;" [className]="joincampDropdownActive==true ? 'dropbtn toolBarContentButton toolBarContentButtonActive' : 'dropbtn toolBarContentButton'">
+          <fa-icon class="fa-2x" [icon]="faAddressBook"></fa-icon>
+          <div class="toolBarButtonText">Dołącz do kampanii<fa-icon class="dropbtn" [icon]="faChevronUp" style="padding-left: 8px; padding-right: 8px;opacity: 0.8;display: inline-block;" [ngStyle]="joincampDropdownActive==true ? {'transform': 'rotate(0deg)'} : {'transform': 'rotate(180deg)'}"></fa-icon></div>
+        </button>
+        <div class="dropdown-content" id="joincampDropdown" [className]="joincampDropdownActive==true ? 'dropdown-content show' : 'dropdown-content hide'">
+          <a href="#" class="dropdownItem">Link 1</a>
+          <a href="#" class="dropdownItem">Link 2</a>
+          <a href="#" class="dropdownItem">Link 3</a>
+        </div>
+      </div> 
+      <p class="toolBarSectionSubtitle">Status pracy</p>
+    </div>
+    <div class="toolBarSection">
+      <button class="toolBarContentButton">
+        <fa-icon class="fa-2x" [icon]="faIdCard"></fa-icon>
+        <p class="toolBarButtonText">Klienci</p>
+      </button>
+      <button class="toolBarContentButton">
+        <fa-icon class="fa-2x" [icon]="faTasks"></fa-icon>
+        <p class="toolBarButtonText">Zadania</p>
+      </button>
+      <button class="toolBarContentButton">
+        <fa-icon class="fa-2x" [icon]="faBook"></fa-icon>
+        <p class="toolBarButtonText">Knowledge base</p>
+      </button>
+      <p class="toolBarSectionSubtitle">CRM</p>
+    </div>
+  </div>
+  <div *ngIf="this.selComponent == 2">
+    trzy
+  </div>
+  <div *ngIf="this.selComponent == 3">
+    cztery albo pienc
+  </div>
+  <div *ngIf="this.selComponent == 4" class="toolBarContent">
+    <div class="toolBarSection">
+      <button (click)="startCall()" style="grid-column: 1;" [className]="ongoingCall==true ? 'toolBarContentButton ongoingCall' : 'toolBarContentButton'">
+        <fa-icon class="fa-2x" [icon]="faPhone"></fa-icon>
+        <p class="toolBarButtonText">Rozłącz</p>
+      </button>
+      <button class="toolBarContentButton" style="border-right-style: solid;border-right-width: thin;border-right-color: lightgray;">
+        <fa-icon class="fa-2x" [icon]="faCalculator"></fa-icon>
+        <p class="toolBarButtonText">Klawiatura</p>
+      </button>
+      
+
+      <!-- <div class="dropdown" style="grid-column: 2;grid-row: 1;" (click)="newmailDropdownToggle()">
+        <button style="height: 100%;" [className]="newmailDropdownActive==true ? 'dropbtn toolBarContentButton toolBarContentButtonActive' : 'dropbtn toolBarContentButton'">
+          <fa-icon class="fa-2x" [icon]="faEnvelope"></fa-icon>
+          <div class="toolBarButtonText">Nowa wiadomość e-mail <fa-icon class="dropbtn" [icon]="faChevronUp" style="padding-left: 8px; padding-right: 8px;opacity: 0.8;display: inline-block;" [ngStyle]="newmailDropdownActive==true ? {'transform': 'rotate(0deg)'} : {'transform': 'rotate(180deg)'}"></fa-icon></div>
+        </button>
+
+        <div class="dropdown-content" id="newmailDropdown" [className]="newmailDropdownActive==true ? 'dropdown-content show' : 'dropdown-content hide'">
+          <a href="#" class="dropdownItem">Link 1</a>
+          <a href="#" class="dropdownItem">Link 2</a>
+          <a href="#" class="dropdownItem">Link 3</a>
+        </div>
+      </div>  -->
+
+      <button class="toolBarContentButton">
+        <fa-icon class="fa-2x" [icon]="faMicrophoneSlash"></fa-icon>
+        <p class="toolBarButtonText">Wycisz</p>
+      </button>
+      <button class="toolBarContentButton">
+        <fa-icon class="fa-2x" [icon]="faPhoneSlash"></fa-icon>
+        <p class="toolBarButtonText">Zawieszenie</p>
+      </button>
+      <p class="toolBarSectionSubtitle">Telefon</p>
+    </div>
+    <div class="toolBarSection">
+      <div class="threeStoriesSectionContainer">
+          <button class="toolBarContentButton threeStoriesSectionButton" style="grid-row: 1;">
+            <fa-icon class="fa-x" [icon]="faUserAlt"></fa-icon>
+            <p class="toolBarButtonText" style="margin: 0;">Transfer do kolejki</p>
+            <fa-icon class="dropbtn" [icon]="faChevronUp" style="padding-left: 8px; padding-right: 8px;opacity: 0.8;transform: rotate(180deg)"></fa-icon>
+          </button>
+          <button class="toolBarContentButton threeStoriesSectionButton" style="grid-row: 2;">
+            <fa-icon class="fa-x" [icon]="faUserAlt"></fa-icon>
+            <p class="toolBarButtonText" style="margin: 0;">Transfer do agenta</p>
+            <fa-icon class="dropbtn" [icon]="faChevronUp" style="padding-left: 8px; padding-right: 8px;opacity: 0.8;transform: rotate(180deg)"></fa-icon>
+          </button>
+          <button class="toolBarContentButton threeStoriesSectionButton" style="grid-row: 3;">
+            <fa-icon class="fa-x" [icon]="faUserAlt"></fa-icon>
+            <p class="toolBarButtonText" style="margin: 0;">Transfer na numer</p>
+          </button>
+      </div>
+      <p class="toolBarSectionSubtitle">Transfer</p>
+    </div>
+    <div class="toolBarSection">
+        <div class="threeStoriesSectionContainer">
+            <button class="toolBarContentButton threeStoriesSectionButton" style="grid-row: 1;">
+              <fa-icon class="fa-x" [icon]="faUserAlt"></fa-icon>
+              <p class="toolBarButtonText" style="margin: 0;">Konsultacja z kolejką</p>
+              <fa-icon class="dropbtn" [icon]="faChevronUp" style="padding-left: 8px; padding-right: 8px;opacity: 0.8;transform: rotate(180deg)"></fa-icon>
+            </button>
+            <button class="toolBarContentButton threeStoriesSectionButton" style="grid-row: 2;">
+              <fa-icon class="fa-x" [icon]="faUserAlt"></fa-icon>
+              <p class="toolBarButtonText" style="margin: 0;">Konsultacja z agentem</p>
+              <fa-icon class="dropbtn" [icon]="faChevronUp" style="padding-left: 8px; padding-right: 8px;opacity: 0.8;transform: rotate(180deg)"></fa-icon>
+            </button>
+            <button class="toolBarContentButton threeStoriesSectionButton" style="grid-row: 3;">
+              <fa-icon class="fa-x" [icon]="faUserAlt"></fa-icon>
+              <p class="toolBarButtonText" style="margin: 0;">Konsultacja z numerem</p>
+            </button>
+        </div>
+      <p class="toolBarSectionSubtitle">Konsultacja</p>
+    </div>
+    <div class="toolBarSection">
+      <button class="toolBarContentButton">
+        <fa-icon class="fa-2x" [icon]="faFolderMinus"></fa-icon>
+        <p class="toolBarButtonText">Zamknij interakcję</p>
+      </button>
+    </div>
+  </div>
+  </div>
+  <div id="contentBar">
+   
+   
+    <div id="contentInnerBar" *ngIf="ongoingCall==true">
+      <div id="contentTabs">
+        <div [className]="selTab==0 ? 'contentTab contentTabActive' : 'contentTab'">
+          <button (click)="selHomeTab()" [className]="selTab==0 ? 'contentTabButton contentTabButtonActive' : 'contentTabButton'">
+            <fa-icon [icon]="faHome" style="padding-left: 3px; padding-right: 3px;"></fa-icon> Main
+          </button>
+        </div>
+        <div (click)="selCallTab()" [className]="selTab==1 ? 'contentTab contentTabActive' : 'contentTab'">
+          <button [className]="selTab==1 ? 'contentTabButton contentTabButtonActive' : 'contentTabButton'">
+            <fa-icon [icon]="faPhone" style="padding-left: 3px; padding-right: 3px;"></fa-icon> Rozmowa
+          </button>
+        </div>
+      </div>
+      <div id="contentMain">
+
+        <div id="">
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="footerBar">
+    <div id="footerText">
+      <div class="footerTextElements">Michał Kurpiel</div>
+      <div class="footerTextElements">| <fa-icon [icon]="faPhone" style="padding-left: 3px; padding-right: 3px;"></fa-icon> Numer telefonu: SIP/1000 |</div>
+    </div>
+    <div id="windowControl">
+      <div class="selectWindowControl resizeControl">
+        <fa-icon [icon]="faEllipsisH"></fa-icon>
+      </div>
+    </div>
+  </div>
+</div>
